@@ -1,0 +1,14 @@
+build
+out
+.git
+.cache
+.idea
+.vs
+.vscode
+PA9/.vs/PA9.slnx/v18/Browse.VC.db
+PA9/.vs/PA9.slnx/v18/DocumentLayout.json
+*.json
+/PA9/.vs
+/PA9/.vs/PA9.slnx/v18
+/PA9/.vs/PA9.slnx/v18
+PA9/.vs/PA9.slnx/v18/Browse.VC.db
