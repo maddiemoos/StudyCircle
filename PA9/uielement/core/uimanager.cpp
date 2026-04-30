@@ -11,7 +11,8 @@ UIEvent UIManager::translate(const sf::Event& e, const sf::RenderWindow& window)
     // I would love to use a switch statement here
     // But SFML recently went "type-safe", so it would be illegal
     // However, I want to handle events still, so here we are
-
+    // I used ChatGPT here to handle this
+    // Prompt: "What is the best way to handle inputs in SFML 3.1.0 windows?"
     if (e.getIf<sf::Event::MouseMoved>()) {
         out.type = UIEventType::MouseMove;
     }
