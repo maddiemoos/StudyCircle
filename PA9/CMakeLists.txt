@@ -3,6 +3,7 @@ project(StudyCircle LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+# This is how we get SFML onto our project
 include(FetchContent)
 FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
@@ -14,13 +15,15 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(${PROJECT_NAME} main.cpp)
 add_subdirectory(menu)
+add_subdirectory(uielement)
 add_subdirectory(quizard)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     SFML::Graphics
     SFML::Window
     SFML::System
-    menu
+    menu 
+    uielement
     quizard
 )
 
