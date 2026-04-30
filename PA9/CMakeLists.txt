@@ -13,14 +13,12 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(${PROJECT_NAME} main.cpp)
-add_subdirectory(menu heatmap)
+add_subdirectory(menu)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     SFML::Graphics
     SFML::Window
     SFML::System
-    menu
-    heatmap
-)
+    menu )
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})

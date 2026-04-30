@@ -2,11 +2,11 @@
 
 void drawRectangle()
 {
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "PA9 SFML Test");
+    sf::RenderWindow window(sf::VideoMode({ 1600, 780 }), "PA9 SFML Test");
 
-    sf::RectangleShape box(sf::Vector2f(200.f, 150.f));
-    box.setFillColor(sf::Color::Green);
-    box.setPosition(sf::Vector2f(300.f, 225.f));
+    sf::RectangleShape box(sf::Vector2f(1600.f, 780.f));
+    box.setFillColor(sf::Color::White);
+    box.setPosition(sf::Vector2f(0.f, 0.f));
 
     while (window.isOpen())
     {
