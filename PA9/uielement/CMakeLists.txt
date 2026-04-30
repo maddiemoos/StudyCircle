@@ -6,6 +6,8 @@ target_include_directories(uielement
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+add_subdirectory(core)
+
 target_link_libraries(uielement
     INTERFACE
     SFML::Graphics

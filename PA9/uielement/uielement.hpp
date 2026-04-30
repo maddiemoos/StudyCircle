@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
+#include <vector>
 
 // Abstract class (Parent) with useful tools from SFML
 // We use a "retained-mode" UI
@@ -10,13 +12,8 @@
 //    -> handleEvent -> update -> render
 class UIElement {
 protected:
-    // Protected elements for use by elements
-    sf::Vector2f position;
-    sf::Vector2f size;
-    bool visible = true;
-    bool hovered = false;
-    bool focused = false;
-
+    sf::Vector2f position{ 0,0 };
+    sf::Vector2f size{ 0,0 };
 
     UIElement* parent = nullptr;
     std::vector<std::unique_ptr<UIElement>> children;
@@ -24,25 +21,36 @@ protected:
 public:
     virtual ~UIElement() = default;
 
-    // Handles inputs (for use in buttons or text box)
-    virtual void handleEvent(const sf::Event& event, const sf::Vector2f& mousePos) {
-        // Traverse children FIRST (top-most last)
+    // --- Event handling ---
+    virtual bool handleEvent(const UIEvent& e) {
+        // children first (topmost last drawn = highest priority)
         for (auto it = children.rbegin(); it != children.rend(); ++it) {
-            (*it)->handleEvent(event, mousePos);
+            if ((*it)->handleEvent(e))
+                return true;
         }
+        // Outside of bounds of the element
+        // This was a byproduct of the changes in uimanager.cpp
+        return false;
     }
 
-    virtual void update(float dt) {}
+    // Frame lifecycle
+    virtual void update(float dt) {
+        for (auto& c : children)
+            c->update(dt);
+    }
+
     virtual void draw(sf::RenderWindow& window) {
         for (auto& child : children)
             child->draw(window);
     }
 
+    // Tree Management
     void addChild(std::unique_ptr<UIElement> child) {
         child->parent = this;
         children.push_back(std::move(child));
     }
 
+    // Geometry getters/setters
     sf::FloatRect getBounds() const {
         return { position, size };
     }
