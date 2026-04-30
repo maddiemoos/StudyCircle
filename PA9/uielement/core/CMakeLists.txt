@@ -1,5 +1,5 @@
 add_library(core
-    ui_manager.cpp
+    uimanager.cpp
 )
 
 target_include_directories(core

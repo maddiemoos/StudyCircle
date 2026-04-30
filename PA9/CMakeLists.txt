@@ -13,8 +13,9 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(${PROJECT_NAME} main.cpp "uielement/core/uimanager.cpp")
-add_subdirectory(menu uielement)
+add_executable(${PROJECT_NAME} main.cpp)
+add_subdirectory(menu)
+add_subdirectory(uielement)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 target_link_libraries(${PROJECT_NAME} PRIVATE 
     SFML::Graphics

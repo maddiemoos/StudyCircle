@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "core/uievent.hpp"
 #include <memory>
 #include <vector>
 
